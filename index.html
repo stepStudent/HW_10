@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Бронювання квитків на рок-концерт | Thunderstorm</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark text-light">
+
+  <!-- Навігаційна панель -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-black py-3 border-bottom border-secondary border-opacity-25 shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-uppercase fs-4" href="#">
+        <i class="bi bi-music-note-beamed text-danger"></i>
+        <span>Thunderstorm <span class="badge bg-danger fs-6 text-uppercase">Live</span></span>
+      </a>
+      <span class="navbar-text text-light-50 d-none d-md-block">
+        <i class="bi bi-fire text-warning me-1"></i> Головна рок-подія сезону!
+      </span>
+    </div>
+  </nav>
+
+  <!-- Головний блок (Hero Section) -->
+  <header class="hero-section text-center py-5">
+    <div class="container py-4">
+      <span class="badge bg-danger px-3 py-2 text-uppercase letter-spacing mb-3">Світовий тур «Вогняний Шторм»</span>
+      <h1 class="display-3 fw-bold text-uppercase mb-3 rock-title">Рок-концерт гурту «Thunderstorm»</h1>
+      <p class="lead text-light-75 max-w-700 mx-auto mb-4">
+        Дві години чистого драйву, потужних гітарних рифів, шаленої енергетики та легендарних хітів у живому виконанні.
+        Відчуй справжній рок разом із тисячами однодумців!
+      </p>
+
+      <!-- Інформаційні картки (Дата, Час, Місце, Ціна) -->
+      <div class="row g-3 justify-content-center mb-4">
+        <div class="col-sm-6 col-md-3">
+          <div class="info-card p-3 rounded-4 bg-secondary bg-opacity-25 border border-secondary border-opacity-50 h-100">
+            <i class="bi bi-calendar-event text-danger fs-3 mb-2 d-block"></i>
+            <div class="text-uppercase small text-secondary fw-semibold">Дата проведення</div>
+            <strong class="fs-6">25 травня 2025</strong>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="info-card p-3 rounded-4 bg-secondary bg-opacity-25 border border-secondary border-opacity-50 h-100">
+            <i class="bi bi-clock text-warning fs-3 mb-2 d-block"></i>
+            <div class="text-uppercase small text-secondary fw-semibold">Початок</div>
+            <strong class="fs-6">19:00 (Вхід з 18:00)</strong>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="info-card p-3 rounded-4 bg-secondary bg-opacity-25 border border-secondary border-opacity-50 h-100">
+            <i class="bi bi-geo-alt-fill text-danger fs-3 mb-2 d-block"></i>
+            <div class="text-uppercase small text-secondary fw-semibold">Локація</div>
+            <strong class="fs-6">Київ, Клуб «Atlas»</strong>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="info-card p-3 rounded-4 bg-secondary bg-opacity-25 border border-secondary border-opacity-50 h-100">
+            <i class="bi bi-ticket-perforated text-warning fs-3 mb-2 d-block"></i>
+            <div class="text-uppercase small text-secondary fw-semibold">Вартість 1 квитка</div>
+            <strong class="fs-6 text-warning"><span id="ticketPriceDisplay">650</span> грн</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Секція форми бронювання та реєстрації -->
+  <main class="container pb-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-xl-7">
+        <div class="card bg-black border border-secondary border-opacity-50 rounded-4 shadow-lg p-4 p-md-5">
+          <div class="text-center mb-4">
+            <h2 class="h3 fw-bold text-uppercase rock-title">Бронювання квитків</h2>
+            <p class="text-secondary small mb-0">Заповніть форму нижче, щоб зареєструватися та отримати квитки</p>
+          </div>
+
+          <!-- Блок для виведення повідомлень JS (успіх або помилка) -->
+          <div id="messageAlert" class="alert d-none rounded-3" role="alert"></div>
+
+          <!-- Форма реєстрації -->
+          <form id="registrationForm" novalidate>
+            <!-- Поле: Ім'я -->
+            <div class="mb-3">
+              <label for="userName" class="form-label fw-semibold">
+                <i class="bi bi-person-fill text-danger me-1"></i> Ваше ім'я та прізвище:
+              </label>
+              <input 
+                type="text" 
+                class="form-control form-control-lg bg-dark text-light border-secondary" 
+                id="userName" 
+                placeholder="Наприклад: Олексій Коваленко"
+              >
+            </div>
+
+            <!-- Поле: Email -->
+            <div class="mb-3">
+              <label for="userEmail" class="form-label fw-semibold">
+                <i class="bi bi-envelope-fill text-danger me-1"></i> Електронна пошта (Email):
+              </label>
+              <input 
+                type="email" 
+                class="form-control form-control-lg bg-dark text-light border-secondary" 
+                id="userEmail" 
+                placeholder="name@example.com"
+              >
+              <div class="form-text text-secondary">
+                На цю пошту буде надіслано підтвердження та електронні квитки.
+              </div>
+            </div>
+
+            <!-- Поле: Кількість учасників / квитків -->
+            <div class="mb-4">
+              <label for="participantsCount" class="form-label fw-semibold">
+                <i class="bi bi-people-fill text-danger me-1"></i> Кількість квитків (учасників):
+              </label>
+              <div class="input-group input-group-lg">
+                <input 
+                  type="number" 
+                  class="form-control bg-dark text-light border-secondary" 
+                  id="participantsCount" 
+                  placeholder="Введіть кількість (мін. 1)"
+                  min="1" 
+                  max="50"
+                  value="1"
+                >
+                <span class="input-group-text bg-secondary bg-opacity-25 text-light border-secondary">шт.</span>
+              </div>
+            </div>
+
+            <!-- Інформація про розрахунок загальної вартості -->
+            <div class="p-3 mb-4 rounded-3 bg-secondary bg-opacity-10 border border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+              <div>
+                <span class="text-secondary small d-block">Розрахункова сума до сплати:</span>
+                <span class="fw-bold fs-5 text-light"><span id="calculationDetails">1 × 650 грн</span></span>
+              </div>
+              <div class="text-end">
+                <span class="text-secondary small d-block">Загалом:</span>
+                <span class="fw-bold fs-4 text-warning"><span id="totalPriceDisplay">650</span> грн</span>
+              </div>
+            </div>
+
+            <!-- Кнопка відправки форми -->
+            <div class="d-grid">
+              <button type="submit" id="submitBtn" class="btn btn-danger btn-lg fw-bold text-uppercase py-3 rounded-pill btn-rock shadow">
+                <i class="bi bi-ticket-detailed-fill me-2"></i> Зареєструватися
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Футер -->
+  <footer class="bg-black py-4 border-top border-secondary border-opacity-25 text-center text-secondary small">
+    <div class="container">
+      <p class="mb-1">© 2025 Рок-гурт «Thunderstorm». Усі права захищено.</p>
+      <p class="mb-0 text-light-50">Навчальний проєкт: робота з Bootstrap 5, змінними та розгалуженнями if/else у JavaScript.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Власний JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
+
