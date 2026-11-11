@@ -12,152 +12,292 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-dark text-light">
 
   <!-- Навігаційна панель -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-black py-3 border-bottom border-secondary border-opacity-25 shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-black py-3 border-bottom border-secondary border-opacity-25 shadow-sm sticky-top">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-uppercase fs-4" href="#">
         <i class="bi bi-music-note-beamed text-danger"></i>
         <span>Thunderstorm <span class="badge bg-danger fs-6 text-uppercase">Live</span></span>
       </a>
-      <span class="navbar-text text-light-50 d-none d-md-block">
-        <i class="bi bi-fire text-warning me-1"></i> Головна рок-подія сезону!
+      <span class="navbar-text text-light-50 d-none d-md-flex align-items-center gap-2">
+        <i class="bi bi-fire text-warning"></i> Головна рок-подія сезону!
       </span>
     </div>
   </nav>
 
   <!-- Головний блок (Hero Section) -->
   <header class="hero-section text-center py-5">
-    <div class="container py-4">
+    <div class="container py-2">
       <span class="badge bg-danger px-3 py-2 text-uppercase letter-spacing mb-3">Світовий тур «Вогняний Шторм»</span>
-      <h1 class="display-3 fw-bold text-uppercase mb-3 rock-title">Рок-концерт гурту «Thunderstorm»</h1>
+      <h1 class="display-4 fw-bold text-uppercase mb-3 rock-title">Рок-концерт гурту «Thunderstorm»</h1>
       <p class="lead text-light-75 max-w-700 mx-auto mb-4">
         Дві години чистого драйву, потужних гітарних рифів, шаленої енергетики та легендарних хітів у живому виконанні.
-        Відчуй справжній рок разом із тисячами однодумців!
+        Обирайте категорію квитків, користуйтесь промокодами та бронюйте онлайн!
       </p>
 
-      <!-- Інформаційні картки (Дата, Час, Місце, Ціна) -->
-      <div class="row g-3 justify-content-center mb-4">
-        <div class="col-sm-6 col-md-3">
+      <!-- Інформаційні картки (Дата, Час, Місце, Категорії) -->
+      <div class="row g-3 justify-content-center mb-2">
+        <div class="col-6 col-md-3">
           <div class="info-card p-3 rounded-4 bg-secondary bg-opacity-25 border border-secondary border-opacity-50 h-100">
             <i class="bi bi-calendar-event text-danger fs-3 mb-2 d-block"></i>
             <div class="text-uppercase small text-secondary fw-semibold">Дата проведення</div>
             <strong class="fs-6">25 травня 2025</strong>
           </div>
         </div>
-        <div class="col-sm-6 col-md-3">
+        <div class="col-6 col-md-3">
           <div class="info-card p-3 rounded-4 bg-secondary bg-opacity-25 border border-secondary border-opacity-50 h-100">
             <i class="bi bi-clock text-warning fs-3 mb-2 d-block"></i>
             <div class="text-uppercase small text-secondary fw-semibold">Початок</div>
             <strong class="fs-6">19:00 (Вхід з 18:00)</strong>
           </div>
         </div>
-        <div class="col-sm-6 col-md-3">
+        <div class="col-6 col-md-3">
           <div class="info-card p-3 rounded-4 bg-secondary bg-opacity-25 border border-secondary border-opacity-50 h-100">
             <i class="bi bi-geo-alt-fill text-danger fs-3 mb-2 d-block"></i>
             <div class="text-uppercase small text-secondary fw-semibold">Локація</div>
             <strong class="fs-6">Київ, Клуб «Atlas»</strong>
           </div>
         </div>
-        <div class="col-sm-6 col-md-3">
+        <div class="col-6 col-md-3">
           <div class="info-card p-3 rounded-4 bg-secondary bg-opacity-25 border border-secondary border-opacity-50 h-100">
             <i class="bi bi-ticket-perforated text-warning fs-3 mb-2 d-block"></i>
-            <div class="text-uppercase small text-secondary fw-semibold">Вартість 1 квитка</div>
-            <strong class="fs-6 text-warning"><span id="ticketPriceDisplay">650</span> грн</strong>
+            <div class="text-uppercase small text-secondary fw-semibold">Квитки від</div>
+            <strong class="fs-6 text-warning">400 грн</strong>
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Секція форми бронювання та реєстрації -->
+  <!-- Основний інтерактивний блок: Реєстрація + Калькулятор зі знижками та промокодами -->
   <main class="container pb-5">
     <div class="row justify-content-center">
-      <div class="col-lg-8 col-xl-7">
+      <div class="col-lg-9 col-xl-8">
+
+        <!-- Баннер діючих акцій та знижок -->
+        <div class="alert bg-black border border-secondary border-opacity-50 rounded-4 shadow-sm p-3 mb-4">
+          <div class="d-flex align-items-center gap-2 mb-2 text-warning fw-semibold">
+            <i class="bi bi-stars fs-5"></i>
+            <span>Система знижок та спеціальних пропозицій:</span>
+          </div>
+          <div class="row g-2 text-center small">
+            <div class="col-md-4">
+              <div class="p-2 rounded bg-dark border border-secondary border-opacity-25">
+                <span class="text-secondary d-block">3–4 квитки</span>
+                <span class="text-warning fw-bold">Знижка 10%</span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-2 rounded bg-dark border border-secondary border-opacity-25">
+                <span class="text-secondary d-block">5 і більше квитків</span>
+                <span class="text-success fw-bold">Знижка 20%</span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-2 rounded bg-dark border border-secondary border-opacity-25">
+                <span class="text-secondary d-block">Промокод <code class="text-info fw-bold">EVENT50</code></span>
+                <span class="text-info fw-bold">−50 грн до замовлення</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Головна картка: Форма реєстрації та калькулятор -->
         <div class="card bg-black border border-secondary border-opacity-50 rounded-4 shadow-lg p-4 p-md-5">
+          
           <div class="text-center mb-4">
-            <h2 class="h3 fw-bold text-uppercase rock-title">Бронювання квитків</h2>
-            <p class="text-secondary small mb-0">Заповніть форму нижче, щоб зареєструватися та отримати квитки</p>
+            <h2 class="h3 fw-bold text-uppercase rock-title">Реєстрація та онлайн-бронювання</h2>
+            <p class="text-secondary small mb-0">Заповніть дані учасника, оберіть категорію квитків та розрахуйте точну вартість</p>
           </div>
 
-          <!-- Блок для виведення повідомлень JS (успіх або помилка) -->
-          <div id="messageAlert" class="alert d-none rounded-3" role="alert"></div>
+          <!-- Блок виведення повідомлень валідації (успіх або помилка) -->
+          <div id="statusAlert" class="alert d-none rounded-3" role="alert"></div>
 
-          <!-- Форма реєстрації -->
-          <form id="registrationForm" novalidate>
-            <!-- Поле: Ім'я -->
-            <div class="mb-3">
-              <label for="userName" class="form-label fw-semibold">
-                <i class="bi bi-person-fill text-danger me-1"></i> Ваше ім'я та прізвище:
-              </label>
-              <input 
-                type="text" 
-                class="form-control form-control-lg bg-dark text-light border-secondary" 
-                id="userName" 
-                placeholder="Наприклад: Олексій Коваленко"
-              >
-            </div>
-
-            <!-- Поле: Email -->
-            <div class="mb-3">
-              <label for="userEmail" class="form-label fw-semibold">
-                <i class="bi bi-envelope-fill text-danger me-1"></i> Електронна пошта (Email):
-              </label>
-              <input 
-                type="email" 
-                class="form-control form-control-lg bg-dark text-light border-secondary" 
-                id="userEmail" 
-                placeholder="name@example.com"
-              >
-              <div class="form-text text-secondary">
-                На цю пошту буде надіслано підтвердження та електронні квитки.
-              </div>
-            </div>
-
-            <!-- Поле: Кількість учасників / квитків -->
-            <div class="mb-4">
-              <label for="participantsCount" class="form-label fw-semibold">
-                <i class="bi bi-people-fill text-danger me-1"></i> Кількість квитків (учасників):
-              </label>
-              <div class="input-group input-group-lg">
+          <form id="bookingForm" novalidate>
+            
+            <!-- Розділ 1: Дані учасника -->
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label for="userName" class="form-label fw-semibold small">
+                  <i class="bi bi-person-fill text-danger me-1"></i> Ім'я та прізвище:
+                </label>
                 <input 
-                  type="number" 
-                  class="form-control bg-dark text-light border-secondary" 
-                  id="participantsCount" 
-                  placeholder="Введіть кількість (мін. 1)"
-                  min="1" 
-                  max="50"
-                  value="1"
+                  type="text" 
+                  class="form-control form-control-lg bg-dark text-light border-secondary" 
+                  id="userName" 
+                  placeholder="Олексій Коваленко"
                 >
-                <span class="input-group-text bg-secondary bg-opacity-25 text-light border-secondary">шт.</span>
+              </div>
+
+              <div class="col-md-6">
+                <label for="userEmail" class="form-label fw-semibold small">
+                  <i class="bi bi-envelope-fill text-danger me-1"></i> Електронна пошта (Email):
+                </label>
+                <input 
+                  type="email" 
+                  class="form-control form-control-lg bg-dark text-light border-secondary" 
+                  id="userEmail" 
+                  placeholder="name@example.com"
+                >
               </div>
             </div>
 
-            <!-- Інформація про розрахунок загальної вартості -->
-            <div class="p-3 mb-4 rounded-3 bg-secondary bg-opacity-10 border border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
-              <div>
-                <span class="text-secondary small d-block">Розрахункова сума до сплати:</span>
-                <span class="fw-bold fs-5 text-light"><span id="calculationDetails">1 × 650 грн</span></span>
-              </div>
-              <div class="text-end">
-                <span class="text-secondary small d-block">Загалом:</span>
-                <span class="fw-bold fs-4 text-warning"><span id="totalPriceDisplay">650</span> грн</span>
+            <!-- Розділ 2: Вибір категорії квитка -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold small d-block">
+                <i class="bi bi-shield-check text-warning me-1"></i> Категорія квитка:
+              </label>
+              <div class="row g-3">
+                <!-- Категорія Standard -->
+                <div class="col-sm-6">
+                  <label class="category-card p-3 rounded-3 border border-secondary border-opacity-50 d-flex align-items-center gap-3 w-100 cursor-pointer" for="categoryStandard">
+                    <input class="form-check-input mt-0 flex-shrink-0" type="radio" name="ticketCategory" id="categoryStandard" value="standard" checked>
+                    <div class="flex-grow-1">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <strong class="text-light">Standard</strong>
+                        <span class="badge bg-secondary">400 грн</span>
+                      </div>
+                      <small class="text-secondary d-block">Вхід у головну фан-зону концерту</small>
+                    </div>
+                  </label>
+                </div>
+
+                <!-- Категорія VIP -->
+                <div class="col-sm-6">
+                  <label class="category-card p-3 rounded-3 border border-secondary border-opacity-50 d-flex align-items-center gap-3 w-100 cursor-pointer" for="categoryVIP">
+                    <input class="form-check-input mt-0 flex-shrink-0" type="radio" name="ticketCategory" id="categoryVIP" value="vip">
+                    <div class="flex-grow-1">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <strong class="text-warning">VIP</strong>
+                        <span class="badge bg-warning text-dark fw-bold">800 грн</span>
+                      </div>
+                      <small class="text-secondary d-block">VIP-зона біля сцени + автограф-сесія</small>
+                    </div>
+                  </label>
+                </div>
               </div>
             </div>
 
-            <!-- Кнопка відправки форми -->
-            <div class="d-grid">
-              <button type="submit" id="submitBtn" class="btn btn-danger btn-lg fw-bold text-uppercase py-3 rounded-pill btn-rock shadow">
-                <i class="bi bi-ticket-detailed-fill me-2"></i> Зареєструватися
-              </button>
+            <!-- Розділ 3: Кількість квитків та промокод -->
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label for="ticketsCount" class="form-label fw-semibold small">
+                  <i class="bi bi-people-fill text-danger me-1"></i> Кількість учасників (квитків):
+                </label>
+                <div class="input-group input-group-lg">
+                  <input 
+                    type="number" 
+                    class="form-control bg-dark text-light border-secondary" 
+                    id="ticketsCount" 
+                    placeholder="Введіть к-сть"
+                    min="1" 
+                    value="1"
+                  >
+                  <span class="input-group-text bg-secondary bg-opacity-25 text-light border-secondary">шт.</span>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="promoCode" class="form-label fw-semibold small">
+                  <i class="bi bi-ticket-perforated-fill text-info me-1"></i> Промокод (якщо є):
+                </label>
+                <div class="input-group input-group-lg">
+                  <input 
+                    type="text" 
+                    class="form-control bg-dark text-light border-secondary text-uppercase" 
+                    id="promoCode" 
+                    placeholder="Наприклад: EVENT50"
+                  >
+                  <button class="btn btn-outline-info" type="button" id="btnApplyPromo">
+                    Застосувати
+                  </button>
+                </div>
+                <div id="promoFeedback" class="form-text small">
+                  Підказка: введіть <strong class="text-info">EVENT50</strong> для отримання додаткової знижки 50 грн.
+                </div>
+              </div>
             </div>
+
+            <!-- Швидкі кнопки перевірки прикладів із завдання -->
+            <div class="mb-4 p-3 rounded-3 bg-secondary bg-opacity-10 border border-secondary border-opacity-25">
+              <span class="text-secondary small d-block mb-2">
+                <i class="bi bi-lightning-charge-fill text-warning me-1"></i> Швидкі тестові сценарії з домашнього завдання:
+              </span>
+              <div class="d-flex flex-wrap gap-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary test-scenario-btn" data-cat="standard" data-count="2" data-promo="">
+                  2 Standard (0%) → 800 грн
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-warning test-scenario-btn" data-cat="standard" data-count="3" data-promo="">
+                  3 Standard (10%) → 1080 грн
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-success test-scenario-btn" data-cat="standard" data-count="5" data-promo="">
+                  5 Standard (20%) → 1600 грн
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-info test-scenario-btn" data-cat="vip" data-count="3" data-promo="EVENT50">
+                  ★ 3 VIP + EVENT50 → 2110 грн
+                </button>
+              </div>
+            </div>
+
+            <!-- Детальний чек розрахунку замовлення -->
+            <div id="orderReceipt" class="card bg-dark border border-secondary border-opacity-50 rounded-3 p-3 mb-4">
+              <h6 class="fw-bold text-uppercase text-light small mb-3 border-bottom border-secondary border-opacity-25 pb-2 d-flex align-items-center justify-content-between">
+                <span><i class="bi bi-receipt text-warning me-2"></i> Детальний розрахунок вартості:</span>
+                <span class="badge bg-secondary bg-opacity-50 text-light fw-normal" id="calcStatusBadge">Розраховано</span>
+              </h6>
+
+              <div class="d-flex justify-content-between mb-2 small">
+                <span class="text-secondary">Категорія та кількість:</span>
+                <span class="fw-semibold text-light"><span id="receiptCategory">Standard</span> (<span id="receiptUnitCost">400</span> грн) × <span id="receiptTicketsCount">1</span> шт.</span>
+              </div>
+
+              <div class="d-flex justify-content-between mb-2 small">
+                <span class="text-secondary">Початкова вартість:</span>
+                <span class="fw-semibold text-light"><span id="receiptInitialCost">400</span> грн</span>
+              </div>
+
+              <div class="d-flex justify-content-between mb-2 small">
+                <span class="text-secondary">Знижка за кількість:</span>
+                <span class="fw-bold" id="receiptDiscount">0% (0 грн)</span>
+              </div>
+
+              <div class="d-flex justify-content-between mb-2 small">
+                <span class="text-secondary">Промокод:</span>
+                <span class="fw-bold" id="receiptPromo">Не застосовано (0 грн)</span>
+              </div>
+
+              <hr class="my-2 border-secondary border-opacity-25">
+
+              <div class="d-flex justify-content-between align-items-center pt-1">
+                <span class="fw-bold text-light fs-5">Підсумкова сума:</span>
+                <span class="fw-bold fs-3 text-warning"><span id="receiptFinalTotal">400</span> грн</span>
+              </div>
+            </div>
+
+            <!-- Кнопки дій -->
+            <div class="row g-3">
+              <div class="col-md-5">
+                <button type="button" id="btnCalculate" class="btn btn-outline-warning btn-lg fw-bold text-uppercase py-3 w-100 rounded-pill shadow-sm">
+                  <i class="bi bi-calculator me-2"></i> Розрахувати
+                </button>
+              </div>
+              <div class="col-md-7">
+                <button type="submit" id="btnRegister" class="btn btn-danger btn-lg fw-bold text-uppercase py-3 w-100 rounded-pill btn-rock shadow">
+                  <i class="bi bi-check2-circle me-2"></i> Зареєструватися
+                </button>
+              </div>
+            </div>
+
           </form>
+
         </div>
+
       </div>
     </div>
   </main>
@@ -166,7 +306,7 @@
   <footer class="bg-black py-4 border-top border-secondary border-opacity-25 text-center text-secondary small">
     <div class="container">
       <p class="mb-1">© 2025 Рок-гурт «Thunderstorm». Усі права захищено.</p>
-      <p class="mb-0 text-light-50">Навчальний проєкт: робота з Bootstrap 5, змінними та розгалуженнями if/else у JavaScript.</p>
+      <p class="mb-0 text-light-50">Навчальний проєкт IT Step: Bootstrap 5, змінні let/const, арифметичні оператори, знижки, промокод та розгалуження if/else.</p>
     </div>
   </footer>
 
@@ -176,4 +316,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
